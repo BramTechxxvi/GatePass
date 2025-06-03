@@ -13,5 +13,4 @@ public class Visitor {
     private String fullName;
     private String Address;
     private String phone;
-    private String email;
 }

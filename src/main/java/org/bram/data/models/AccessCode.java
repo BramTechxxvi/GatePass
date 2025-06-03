@@ -14,9 +14,10 @@ public class AccessCode {
     @Id
     private String id;
     private String code;
-    private LocalDateTime timeCreated;
-    private LocalDateTime timeUpdated;
-    private LocalDateTime expiryTime;
+    private LocalDateTime timeCreated = LocalDateTime.now();
+    private LocalDateTime expiryTime = timeCreated.plusHours(5);
+    private boolean isValid = true;
+    private boolean isUsed = false;
     @DBRef
     private Resident resident;
     @DBRef

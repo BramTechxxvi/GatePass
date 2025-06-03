@@ -11,7 +11,7 @@ public class Resident {
     @Id
     private String id;
     private String fullName;
-    private String Address;
+    private String address;
     private String phone;
     private String email;
     private String hashedPassword;
