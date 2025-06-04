@@ -4,6 +4,8 @@ import org.bram.data.models.Resident;
 import org.bram.dtos.request.ResidentRegisterRequest;
 import org.bram.dtos.response.ResidentRegisterResponse;
 
+import static org.bram.utils.PasswordUtil.hashPassword;
+
 public class Mapper {
 
     public static Resident map(ResidentRegisterRequest registerRequest) {
@@ -12,7 +14,7 @@ public class Mapper {
         resident.setEmail(registerRequest.getEmail());
         resident.setAddress(registerRequest.getAddress());
         resident.setPhone(registerRequest.getPhone());
-        resident.setHashedPassword(registerRequest.getHashedPassword());
+        resident.setHashedPassword(hashPassword(registerRequest.getHashedPassword()));
 
         return resident;
     }

@@ -7,10 +7,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
+@ActiveProfiles("test")
 class ResidentServicesImplTest {
 
     @Autowired
@@ -30,9 +32,9 @@ class ResidentServicesImplTest {
     @Test
     public void registerNewResident__registerResidentTest() {
         registerResident();
-        assertEquals(residentRepository.count(), 1);
-
-
+        assertNotNull(registerResponse.getId());
+        assertEquals("Registered successfully", registerResponse.getMessage());
+        assertEquals(1, residentRepository.count());
     }
 
     private void registerResident() {
@@ -41,6 +43,7 @@ class ResidentServicesImplTest {
         registerRequest.setAddress("123 Main Street");
         registerRequest.setPhone("0907-826-3522");
         registerRequest.setHashedPassword("12345");
-        residentServices.register(registerRequest);
+        registerResponse = residentServices.register(registerRequest);
     }
+
 }
